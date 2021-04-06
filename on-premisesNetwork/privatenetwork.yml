@@ -25,26 +25,27 @@ Parameters:
 
 Resources:
     VPC:
-      Type: AWS::EC2::VPC
-      Properties:
-        CidrBlock: !Ref VpcCIDR
-        EnableDnsSupport: true
-        Tags:
-          - Key: name
-            Value: !Ref EnvironmentName
+        Type: AWS::EC2::VPC
+        Properties:
+            CidrBlock: !Ref VpcCIDR
+            EnableDnsSupport: true
+            Tags:
+                - Key: name
+                Value: !Ref EnvironmentName
 
     VPNConnection:
-      Type: AWS::EC2::VPNConnection
-      Properties:
-        Type: ipsec.1
-        StaticRoutesOnly: true
-        CustomerGatewayId: !Ref CustomerGateway
-        VpnGatewayId: !Ref VPNGateway
+        Type: AWS::EC2::VPNConnection
+        Properties:
+            Type: ipsec.1
+            StaticRoutesOnly: true
+            CustomerGatewayId: !Ref CustomerGateway
+            VpnGatewayId: !Ref VPNGateway
+
     VPNGateway:
         Type: AWS::EC2::VPNGateway
         Properties:
             Tags:
-            - Key: Name
+                - Key: Name
                 Value: !Ref EnvironmentName
     AttachVpnGateway:
         Type: AWS::EC2::VPCGatewayAttachment
